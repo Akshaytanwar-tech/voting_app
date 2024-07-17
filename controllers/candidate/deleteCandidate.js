@@ -12,9 +12,13 @@ const deleteCandidate = async (req, res) => {
     if (!response) {
       return res.status(404).json({ error: "Candidate not found" });
     }
-
-    console.log("candidate deleted");
-    res.status(200).json(response);
+    res
+      .status(200)
+      .json({
+        response: response,
+        status: "ok",
+        message: "Candidate is deleted",
+      });
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "Internal Server Error" });

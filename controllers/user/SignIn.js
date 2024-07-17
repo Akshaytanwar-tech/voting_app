@@ -1,5 +1,5 @@
 const User = require("../../models/user");
-const {  generateToken } = require("../../jwt");
+const { generateToken } = require("../../jwt");
 const SignIn = async (req, res) => {
   try {
     // Extract aadharCardNumber and password from request body

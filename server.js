@@ -1,15 +1,17 @@
 const express = require("express");
 const app = express();
 const db = require("./db");
+var cors = require("cors");
 require("dotenv").config();
-
 const bodyParser = require("body-parser");
 app.use(bodyParser.json()); // req.body
 const PORT = process.env.PORT || 3000;
-
 // Import the router files
 const userRoutes = require("./routes/userRoutes");
 const candidateRoutes = require("./routes/candidateRoutes");
+const { cloudnayFun } = require("./cloudnary");
+cloudnayFun();
+app.use(cors());
 
 // Use the routers
 app.use("/user", userRoutes);
