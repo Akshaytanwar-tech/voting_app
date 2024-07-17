@@ -1,0 +1,56 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Poppins', sans-serif;
+  }
+  .navbar {
+    background-color: #6c5ce7 !important;
+    transition: background-color 0.3s ease;
+  }
+  .navbar-brand, .navbar-nav .nav-link {
+    color: #ffffff !important;
+    transition: color 0.3s ease;
+  }
+  .navbar-nav .nav-link {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .navbar-nav .nav-link:hover {
+    color: #f8f9fa !important;
+  }
+  .jumbotron {
+    background-color: #4834d4;
+    color: #ffffff;
+    padding: 100px 25px;
+    margin-bottom: 0;
+  }
+  .card {
+    margin-bottom: 30px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+  }
+  .card-title {
+    color: #6c5ce7;
+    font-weight: bold;
+  }
+  .btn-primary {
+    background-color: #6c5ce7;
+    border-color: #6c5ce7;
+    font-weight: bold;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  .btn-primary:hover {
+    background-color: #4834d4;
+    border-color: #4834d4;
+  }
+  .footer {
+    background-color: #4834d4;
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+  }
