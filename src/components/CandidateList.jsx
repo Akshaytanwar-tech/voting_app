@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import fetchCandidate from "../Apis/candidate/fetchCandidates";
 import vote from "../Apis/vote/vote";
 import profile from "../Apis/auth/profile";
+import CongratulationMod from "./Modal/CongratulationMod";
 
 const CandidateList = () => {
   const [candidate, setCandidates] = useState([]);
   const [isvoted, setisVoted] = useState(false);
-  console.log(isvoted);
+  const [modalContent, setModalcontent] = useState("");
+  const [modalContentheader, setModalcontentheader] = useState("");
+
   useEffect(() => {
     fetchCandidate().then((res) => {
       setCandidates(res);
@@ -15,9 +18,21 @@ const CandidateList = () => {
       setisVoted(res.isVoted);
     });
   }, [isvoted]);
+
+  // use ref hook to refer to the modal button.
+  const ref = useRef(null);
+  // Function to handle votes.
   const HandleVote = (id) => {
-    vote(id);
-    window.location.reload();
+    vote(id).then((res) => {
+      if (res.status == "ok") {
+        setModalcontentheader("Congratulations!");
+        setModalcontent(res.message);
+      } else {
+        setModalcontentheader("OOPS!");
+        setModalcontent(res.message);
+      }
+    });
+    ref.current.click();
   };
   return (
     <>
@@ -29,54 +44,65 @@ const CandidateList = () => {
       </div>
       <div class="container text-center my-5">
         <div class="row row-cols-2 row-cols-lg-3 g-2 g-lg-3">
-          {candidate.map((e) => {
+          {candidate.map((e, i) => {
             return (
-              <>
-                <div class="col">
-                  <div className="container mt-5">
-                    <div
-                      className="card text-center"
+              <div class="col" key={i}>
+                <div className="container mt-5">
+                  <div
+                    className="card text-center"
+                    style={{
+                      width: "18rem",
+                      border: "2px solid #4d94ff",
+                      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+                    }}
+                  >
+                    <img
+                      src={e.photo}
+                      alt="Party sign"
                       style={{
-                        width: "18rem",
-                        border: "2px solid #4d94ff",
-                        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+                        width: "150px",
+                        height: "150px",
+                        objectFit: "cover",
+                        borderRadius: "50%",
+                        margin: "20px auto",
+                        border: "3px solid #4d94ff",
                       }}
+                    />
+                    <div
+                      className="card-body"
+                      style={{ backgroundColor: "#f0f8ff" }}
                     >
-                      <img
-                        src={e.photo}
-                        alt="Party sign"
-                        style={{
-                          width: "150px",
-                          height: "150px",
-                          objectFit: "cover",
-                          borderRadius: "50%",
-                          margin: "20px auto",
-                          border: "3px solid #4d94ff",
+                      <h5 className="card-title">{e.name}</h5>
+                      <button
+                        className="btn btn-primary"
+                        onClick={() => {
+                          HandleVote(e._id);
                         }}
-                      />
-                      <div
-                        className="card-body"
-                        style={{ backgroundColor: "#f0f8ff" }}
+                        // disabled={isvoted}
                       >
-                        <h5 className="card-title">{e.name}</h5>
-                        <button
-                          className="btn btn-primary"
-                          onClick={() => {
-                            HandleVote(e._id);
-                          }}
-                          disabled={isvoted}
-                        >
-                          Vote Now 👆
-                        </button>
-                      </div>
+                        Vote Now 👆
+                      </button>
                     </div>
                   </div>
                 </div>
-              </>
+              </div>
             );
           })}
         </div>
       </div>
+      <button
+        type="button"
+        class="btn btn-primary btn-primary-exact invisible"
+        data-bs-toggle="modal"
+        data-bs-target="#congratulationsModal"
+        ref={ref}
+      >
+        Show Congratulations
+      </button>
+      <CongratulationMod
+        content={modalContent}
+        contentHeader={modalContentheader}
+      />
     </>
   );
 };

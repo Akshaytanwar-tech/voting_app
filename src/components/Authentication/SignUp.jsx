@@ -15,12 +15,16 @@ const SignUp = () => {
     age: "",
     aadharCardNumber: "",
   });
+
+  // Function to handle the on change values of signup inputs.
   const onchange = (e) => {
     setcrediential({
       ...crediential,
       [e.target.name]: e.target.value,
     });
   };
+
+  //function to handle the on submit of sign up
   const onsubmit = (e) => {
     e.preventDefault();
     signUp(crediential).then((res) => {
@@ -37,6 +41,7 @@ const SignUp = () => {
       aadharCardNumber: "",
     });
   };
+  
   return (
     <>
       <div class="container">

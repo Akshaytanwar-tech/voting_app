@@ -1,0 +1,43 @@
+.modal-content-exact {
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.5s ease-out;
+  }
+
+  .modal-header-exact {
+    background-color: #28a745;
+    color: white;
+    border-bottom: none;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .modal-body-exact {
+    background-color: #f8f9fa;
+  }
+
+  .modal-footer-exact {
+    border-top: none;
+    background-color: #f1f1f1;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .btn-primary-exact {
+    background-color: #28a745;
+    border-color: #28a745;
+  }
+
+  .btn-primary-exact:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }

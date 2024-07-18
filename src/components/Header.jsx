@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 const Header = () => {
+
+  // Function to the logout
   const HandleLogOut = () => {
     localStorage.removeItem("token");
     window.location.reload();
   };
+  
   return (
     <>
       <nav class="navbar navbar-expand-lg navbar-dark">

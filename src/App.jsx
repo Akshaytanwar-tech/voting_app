@@ -7,6 +7,7 @@ import Myprofile from "./components/Authentication/Myprofile";
 import ChangePassword from "./components/Authentication/ChangePassword";
 import Dashboard from "./components/admin/Dashboard";
 import ManageCandidates from "./components/admin/ManageCandidates";
+import CongratulationMod from "./components/Modal/CongratulationMod";
 
 function App() {
   return (
@@ -19,7 +20,12 @@ function App() {
           <Route exact path="/profile" element={<Myprofile />} />
           <Route exact path="/changepassword" element={<ChangePassword />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
-          <Route exact path="/dashboard/candidate" element={<ManageCandidates />} />
+          <Route
+            exact
+            path="/dashboard/candidate"
+            element={<ManageCandidates />}
+          />
+          <Route exact path="/test" element={<CongratulationMod />} />
           {/* <Route exact path="/login" element={<Login/>}/>
           <Route exact path="/recovery-password" element={<RecoveryPassword/>}/>
           <Route path="*" element={<NotFound/>}/> */}
